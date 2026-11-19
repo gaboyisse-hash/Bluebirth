@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bluebird — Simulador DEMO Pasarelas</title>
+<style>
+body{background:#0a0f14;color:#fff;font-family:system-ui,sans-serif;padding:20px;max-width:600px;margin:0 auto}
+.card{border:1px solid #00FF94;border-radius:16px;padding:20px}
+input{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:1px solid #333;background:#111;color:#fff;font-size:18px}
+button{width:100%;padding:14px;border:0;border-radius:12px;background:#00FF94;color:#000;font-weight:800;font-size:18px}
+small{opacity:.7}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>SIMULADOR DEMO — PASARELAS FIAT</h2>
+<p><b>Sin valor de pago.</b> BB = unidad de cuenta. Parámetros fijos demo 2026-11-06. No es cotización en vivo, no procesa pagos.</p>
+<p>Fórmula: Colchón 20% se aparta primero → luego Gabriel 75% y Meta 25% sobre el 80% restante. Total = 100%</p>
+<label>MXN <input id="mxn" type="number" value="1250"></label>
+<label>USD <input id="usd" type="number" value="100"></label>
+<label>EUR <input id="eur" type="number" value="50"></label>
+<button onclick="calcBB()">Calcular (demo)</button>
+<p id="resultado"></p>
+<p><small>Ejemplo: 1250 + 100 USD + 50 EUR = 4002.50 BB · Colchón 800.50 · Gabriel 2401.50 · Meta 800.50</small></p>
+</div>
+<script>
+function calcBB(){
+  const mxn = +document.getElementById('mxn').value || 0;
+  const usd = +document.getElementById('usd').value || 0;
+  const eur = +document.getElementById('eur').value || 0;
+  const total = mxn + usd*17.33 + eur*20.39;
+  const colchon = total*0.20;
+  const dist = total*0.80;
+  const gabriel = dist*0.75;
+  const meta = dist*0.25;
+  document.getElementById('resultado').textContent =
+    `Total: ${total.toFixed(2)} BB · Colchón: ${colchon.toFixed(2)} · Gabriel: ${gabriel.toFixed(2)} · Meta: ${meta.toFixed(2)}`;
+}
+calcBB();
+</script>
+</body>
+</html>
