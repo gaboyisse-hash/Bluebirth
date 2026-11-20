@@ -1,4 +1,4 @@
-# Bluebirth
+# Blue Bird
 Red BlueBird - No cómputo, solo existo
 
 ## Organizar archivos por tema
